@@ -197,3 +197,9 @@ mod attestor_endpoint_tests;
 
 #[cfg(test)]
 mod stellar_toml_tests;
+
+#[cfg(test)]
+mod ledger_boundary_tests;
+
+#[cfg(test)]
+mod boundary_test_helpers;

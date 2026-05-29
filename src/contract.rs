@@ -1445,6 +1445,11 @@ pub fn is_attestor(env: Env, attestor: Address) -> bool {
         if fee_percentage > 10_000 {
             panic_with_error!(&env, ErrorCode::InvalidQuote);
         }
+        // Reject quotes whose validity window has already closed (bugfix §2.1).
+        // valid_until must be strictly greater than the current ledger timestamp.
+        if valid_until <= env.ledger().timestamp() {
+            panic_with_error!(&env, ErrorCode::StaleQuote);
+        }
         let inst = env.storage().instance();
         let qcnt_key = soroban_sdk::vec![&env, symbol_short!("QCNT")];
         let next: u64 = inst.get(&qcnt_key).unwrap_or(0u64) + 1;
