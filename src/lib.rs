@@ -118,6 +118,8 @@ pub mod sep24;
 pub mod sep38;
 pub mod contract;
 pub mod stellar_toml;
+#[cfg(feature = "std")]
+pub mod http_client;
 
 pub use domain_validator::validate_anchor_domain;
 pub use errors::{AnchorKitError, ErrorCode};
@@ -138,6 +140,8 @@ pub use deterministic_hash::{compute_payload_hash, verify_payload_hash};
 #[cfg(feature = "std")]
 pub use config::{load_runtime_config_file, parse_runtime_config_str, ConfigFormat, RuntimeConfig};
 pub use webhook::{deliver_webhook, get_dead_letter_webhooks, query_dlq, WebhookDeliveryConfig, DlqEntry};
+#[cfg(feature = "std")]
+pub use http_client::{ProxyConfig, build_client, fetch_stellar_toml_with_proxy, deliver_webhook_with_proxy};
 
 pub use sep6::{
     fetch_transaction_status, initiate_deposit, initiate_withdrawal, DepositResponse,
