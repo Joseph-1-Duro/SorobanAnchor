@@ -16,7 +16,7 @@ use serde::Deserialize;
 use serde_json::Value;
 
 #[cfg(feature = "std")]
-use std::{fs, io::{self, ErrorKind, Read}, path::Path};
+use std::{fs, io::Read, path::Path};
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
